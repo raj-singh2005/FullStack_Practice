@@ -1,0 +1,13 @@
+# Ignore dependency folders in both apps
+node_modules/
+backend/node_modules/
+frontend/node_modules/
+
+# Ignore all environment secret files
+.env
+backend/.env
+frontend/.env
+
+# Ignore build files
+dist/
+build/
