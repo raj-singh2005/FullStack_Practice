@@ -22,10 +22,17 @@ const EventSchema = new mongoose.Schema({
 
     // Community Interaction
     volunteers: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
+    
     funders: [{
         user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
         amount: { type: Number, default: 0 }
-    }]
-}, { timestamps: true });
+    }], // 👈 Ensure there is a COMMA here
+
+    totalFund: { 
+        type: Number, 
+        default: 0 
+    } // 👈 No extra brace above this line!
+
+}, { timestamps: true }); // 👈 Only close the main object here
 
 module.exports = mongoose.model('Event', EventSchema);

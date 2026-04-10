@@ -50,7 +50,7 @@ const Login = ({ setUser }) => {
             <LogIn className="text-blue-600 w-8 h-8" />
           </div>
           <h2 className="text-3xl font-black text-slate-900 tracking-tight">Welcome Back</h2>
-          <p className="text-slate-500 font-medium">Access your Community Civic account</p>
+          <p className="text-slate-500 font-medium">Access your Jamshedpur Civic account</p>
         </div>
 
         <form onSubmit={handleLogin} className="space-y-5">

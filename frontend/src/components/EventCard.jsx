@@ -12,6 +12,7 @@ const EventCard = ({ event, currentUserId, onUpdate, isAuthorityUser }) => {
 
     const handleJoin = async () => {
         try {
+            // Updated to port 5000
             await axios.post('http://localhost:3000/api/events/join', {
                 eventId: event._id,
                 userId: currentUserId
@@ -26,6 +27,7 @@ const EventCard = ({ event, currentUserId, onUpdate, isAuthorityUser }) => {
     const handleFund = async () => {
         if (!fundingAmount || fundingAmount <= 0) return;
         try {
+            // Updated to port 5000
             await axios.post('http://localhost:3000/api/events/fund', {
                 eventId: event._id,
                 userId: currentUserId,
@@ -65,16 +67,23 @@ const EventCard = ({ event, currentUserId, onUpdate, isAuthorityUser }) => {
 
                 <p className="text-slate-500 text-sm mb-6 line-clamp-2 leading-relaxed">{event.description}</p>
 
+                {/* DETAILS GRID: Added Total Raised Display */}
                 <div className="grid grid-cols-2 gap-4 text-[11px] font-bold text-slate-400 mb-6">
                     <div className="flex items-center gap-2">📍 {event.location}</div>
                     <div className="flex items-center gap-2">📅 {new Date(event.date).toLocaleDateString()}</div>
-                    <div className="flex items-center gap-2 text-blue-600">👥 {event.volunteers?.length || 0} Joined</div>
+                    
+                    {/* 💰 Displays dynamic fund from DB */}
+                    <div className="flex items-center gap-2 text-emerald-600 font-black">
+                        💰 ₹{event.totalFund || 0} Raised
+                    </div>
+
+                    <div className="flex items-center gap-2 text-blue-600">
+                        👥 {event.volunteers?.length || 0} Joined
+                    </div>
                 </div>
 
-                {/* --- CONDITIONAL ACTIONS --- */}
                 <div className="flex flex-col gap-3">
                     {isAuthorityUser ? (
-                        /* 🏛️ AUTHORITY VIEW: ONLY FUNDING BUTTON */
                         <button 
                             onClick={() => setShowFundInput(!showFundInput)}
                             className="w-full bg-slate-900 text-white py-4 rounded-[1.5rem] font-black text-[10px] uppercase tracking-[0.2em] flex items-center justify-center gap-2 shadow-xl shadow-slate-200 active:scale-95 transition-all"
@@ -82,7 +91,6 @@ const EventCard = ({ event, currentUserId, onUpdate, isAuthorityUser }) => {
                             <Landmark size={16} strokeWidth={2.5} /> Official Funding
                         </button>
                     ) : (
-                        /* 👤 USER VIEW: BOTH VOLUNTEER AND FUND BUTTONS */
                         <div className="flex gap-2">
                             <button 
                                 onClick={handleJoin}
@@ -105,7 +113,6 @@ const EventCard = ({ event, currentUserId, onUpdate, isAuthorityUser }) => {
                         </div>
                     )}
 
-                    {/* Funding Input Field (Toggles for both but styled the same) */}
                     {showFundInput && (
                         <div className="flex gap-2 mt-1 animate-in slide-in-from-top-2 duration-300">
                             <input 

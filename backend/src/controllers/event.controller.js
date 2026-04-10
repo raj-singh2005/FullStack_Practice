@@ -26,7 +26,7 @@ exports.createEvent = async (req, res) => {
 // Get Filtered Events
 exports.getEvents = async (req, res) => {
     try {
-        const { type, userId } = req.query; // active, closed, hosted, joined
+        const { type, userId } = req.query; 
         let query = {};
 
         if (type === 'active') query.status = 'active';
@@ -63,17 +63,24 @@ exports.joinEvent = async (req, res) => {
     }
 };
 
-// Fund Event
+// Fund Event (Corrected & Merged)
 exports.fundEvent = async (req, res) => {
     try {
         const { eventId, userId, amount } = req.body;
+        const numAmount = Number(amount);
+
         const event = await Event.findByIdAndUpdate(
             eventId,
-            { $push: { funders: { user: userId, amount: Number(amount) } } },
+            { 
+                $inc: { totalFund: numAmount }, // 💰 Increases the global total
+                $push: { funders: { user: userId, amount: numAmount } } // 📝 Records who paid
+            },
             { new: true }
         );
+
         // Award 5 stars for financial support!
         await User.findByIdAndUpdate(userId, { $inc: { stars: 5 } });
+        
         res.json({ message: "Thank you for your contribution!", data: event });
     } catch (err) {
         res.status(500).json({ message: "Funding failed", error: err.message });
