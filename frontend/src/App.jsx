@@ -8,6 +8,7 @@ import AuthoritySignup from './pages/AuthoritySignup';
 import UserDashboard from './pages/UserDashboard';
 import ComplaintForm from './pages/ComplaintForm';
 import AuthorityDashboard from './pages/AuthorityDashboard';
+import EventsPage from './pages/EventsPage'; 
 
 function App() {
   const [user, setUser] = useState(null);
@@ -30,9 +31,10 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/authority-login" element={<AuthorityLogin setUser={setUser} />} />
           <Route path="/authority-signup" element={<AuthoritySignup />} />
-          <Route path="/authority" element={<AuthorityDashboard />} />
+         <Route path="/authority" element={<AuthorityDashboard user={user} setUser={setUser} />} />
           <Route path="/dashboard" element={<UserDashboard user={user} />} />
           <Route path="/report-issue" element={<ComplaintForm user={user} />} />
+          <Route path="/events" element={<EventsPage user={user} />} />
         </Routes>
       </main>
     </div>
@@ -40,4 +42,4 @@ function App() {
   )
 }
 
-export default App
+export default App;

@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { Star, MapPin, Clock, CheckCircle2, Plus, ChevronRight, Loader2, AlertCircle, Trophy } from 'lucide-react';
+import { Star, MapPin, Clock, CheckCircle2, Plus, ChevronRight, Loader2, AlertCircle, Trophy, Calendar } from 'lucide-react'; // Added Calendar icon
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import ComplaintModal from '../components/ComplaintModal'; 
-import LeaderboardModal from '../components/LeaderboardModal'; // ✨ NEW IMPORT
+import LeaderboardModal from '../components/LeaderboardModal';
 import CivicBot from '../components/CivicBot';
 
 const UserDashboard = ({ user }) => {
   const [myReports, setMyReports] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedReport, setSelectedReport] = useState(null);
-  const [isLeaderboardOpen, setIsLeaderboardOpen] = useState(false); // ✨ NEW STATE
+  const [isLeaderboardOpen, setIsLeaderboardOpen] = useState(false);
 
   useEffect(() => {
     const fetchReports = async () => {
@@ -42,20 +42,21 @@ const UserDashboard = ({ user }) => {
   );
 
   return (
-    <div className="max-w-md mx-auto pb-24 space-y-6 px-4 pt-4">
+    <div className="max-w-md mx-auto pb-32 space-y-6 px-4 pt-4">
       
       {/* 1. Profile Summary Card */}
       <div className="bg-slate-900 rounded-[2.5rem] p-6 text-white shadow-2xl shadow-blue-900/20 relative overflow-hidden">
         <div className="relative z-10">
           <div className="flex justify-between items-start mb-1">
              <p className="text-blue-400 font-bold text-xs uppercase tracking-[0.2em]">Citizen Profile</p>
-             {/* ✨ LEADERBOARD BUTTON */}
-             <button 
-               onClick={() => setIsLeaderboardOpen(true)}
-               className="p-2 bg-white/10 hover:bg-white/20 rounded-xl transition-all active:scale-90"
-             >
-               <Trophy size={18} className="text-yellow-400" />
-             </button>
+             <div className="flex gap-2">
+                <button 
+                  onClick={() => setIsLeaderboardOpen(true)}
+                  className="p-2 bg-white/10 hover:bg-white/20 rounded-xl transition-all active:scale-90"
+                >
+                  <Trophy size={18} className="text-yellow-400" />
+                </button>
+             </div>
           </div>
           <h1 className="text-2xl font-black mb-4">Hi, {user?.username || 'Citizen'}</h1>
           
@@ -77,6 +78,23 @@ const UserDashboard = ({ user }) => {
         <div className="absolute -right-10 -top-10 w-40 h-40 bg-blue-600/20 rounded-full blur-3xl"></div>
       </div>
 
+      {/* ✨ NEW: Community Events Quick Access */}
+      <Link 
+        to="/events" 
+        className="bg-blue-50 border border-blue-100 p-5 rounded-[2rem] flex items-center justify-between group hover:bg-blue-100 transition-colors"
+      >
+        <div className="flex items-center gap-4">
+          <div className="bg-blue-600 p-3 rounded-2xl text-white shadow-lg shadow-blue-200">
+            <Calendar size={20} />
+          </div>
+          <div>
+            <h4 className="font-black text-slate-900">Volunteer & Events</h4>
+            <p className="text-[10px] font-bold text-blue-600 uppercase tracking-wider">Earn more stars</p>
+          </div>
+        </div>
+        <ChevronRight size={20} className="text-blue-400 group-hover:translate-x-1 transition-transform" />
+      </Link>
+
       {/* 2. Stats Bar */}
       <div className="grid grid-cols-2 gap-4">
         <div className="bg-white p-4 rounded-3xl border border-slate-100 shadow-sm flex items-center gap-3">
@@ -97,7 +115,7 @@ const UserDashboard = ({ user }) => {
 
       {/* 3. Recent Activity */}
       <div className="space-y-4">
-        <h3 className="font-black text-lg text-slate-900 px-2">Recent Activity</h3>
+        <h3 className="font-black text-lg text-slate-900 px-2">Recent Reports</h3>
         {myReports.length === 0 ? (
           <div className="bg-slate-50 border-2 border-dashed border-slate-200 rounded-[2rem] p-10 text-center">
             <AlertCircle className="mx-auto text-slate-300 mb-2" size={32} />
@@ -136,14 +154,13 @@ const UserDashboard = ({ user }) => {
         isAuthority={false}
       />
 
-      {/* ✨ NEW LEADERBOARD MODAL COMPONENT */}
       <LeaderboardModal 
         isOpen={isLeaderboardOpen}
         onClose={() => setIsLeaderboardOpen(false)}
       />
 
       {/* Bottom Action */}
-      <div className="fixed bottom-6 left-0 right-0 px-6 max-w-md mx-auto">
+      <div className="fixed bottom-6 left-0 right-0 px-6 max-w-md mx-auto z-50">
         <Link to="/report-issue" className="flex items-center justify-center gap-2 bg-blue-600 text-white w-full py-4 rounded-2xl font-black text-lg shadow-2xl shadow-blue-500/40">
           <Plus size={24} strokeWidth={3} />
           Report Issue
