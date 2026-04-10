@@ -29,7 +29,7 @@ const Navbar = ({ user, setUser }) => {
               <ShieldCheck className="w-6 h-6 text-white" />
             </div>
             <div className="flex flex-col text-left">
-              <span className="text-xl font-black tracking-tighter leading-none uppercase">JAMSHEDPUR</span>
+              <span className="text-xl font-black tracking-tighter py-1 leading-none uppercase">Community</span>
               <span className="text-[10px] font-bold text-blue-400 tracking-[0.2em] uppercase">Civic Connect</span>
             </div>
           </Link>

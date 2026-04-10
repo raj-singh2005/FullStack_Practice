@@ -72,12 +72,7 @@ const AuthorityDashboard = ({ user, setUser }) => {
              </p>
           </div>
         </div>
-        {/* <button 
-          onClick={handleLogout}
-          className="flex items-center gap-2 bg-white px-4 py-2 rounded-2xl border border-slate-200 text-rose-500 font-black text-[10px] uppercase hover:bg-rose-50 transition-all shadow-sm"
-        >
-          <LogOut size={14} /> Logout
-        </button> */}
+       
       </div>
 
       {/* --- COMMUNITY EVENTS ACCESS --- */}

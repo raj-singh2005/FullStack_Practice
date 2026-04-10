@@ -28,7 +28,7 @@ const AuthorityLogin = ({ setUser }) => {
         localStorage.setItem('user', JSON.stringify(authorityUser));
         setUser(authorityUser);
         
-        alert("Welcome back, Officer!");
+        alert("Welcome back, Pal!");
         navigate('/authority'); 
       }
     } catch (err) {
@@ -46,8 +46,8 @@ const AuthorityLogin = ({ setUser }) => {
           <div className="bg-amber-500 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg shadow-amber-500/20">
             <ShieldAlert className="text-slate-900 w-8 h-8" />
           </div>
-          <h2 className="text-3xl font-black tracking-tight">Officer Portal</h2>
-          <p className="text-slate-400 font-medium mt-2">Authorized JMC Personnel Only</p>
+          <h2 className="text-3xl font-black tracking-tight">Authority Portal</h2>
+          <p className="text-slate-400 font-medium mt-2">Organization Personnel Only</p>
         </div>
 
         <form onSubmit={handleLogin} className="space-y-5">
@@ -101,11 +101,7 @@ const AuthorityLogin = ({ setUser }) => {
           </p>
         </div>
         
-        <div className="mt-8 pt-8 border-t border-slate-800 text-center">
-          <p className="text-slate-500 text-xs uppercase tracking-widest font-bold">
-            Jamshedpur Municipal Corp
-          </p>
-        </div>
+        
       </div>
     </div>
   );

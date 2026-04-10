@@ -48,7 +48,7 @@ const Signup = () => {
             <UserPlus className="text-white w-8 h-8" />
           </div>
           <h2 className="text-3xl font-black text-slate-900 tracking-tight">Create Account</h2>
-          <p className="text-slate-500 font-medium">Join the Jamshedpur Civic Network</p>
+          <p className="text-slate-500 font-medium">Join the Community Civic Network</p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">

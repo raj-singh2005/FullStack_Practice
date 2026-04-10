@@ -46,8 +46,8 @@ const AuthoritySignup = () => {
           <div className="bg-amber-500/10 w-20 h-20 rounded-3xl flex items-center justify-center mx-auto mb-4 border border-amber-500/30">
             <ShieldPlus className="text-amber-500 w-10 h-10" />
           </div>
-          <h2 className="text-3xl font-black tracking-tight">Officer Registration</h2>
-          <p className="text-slate-400 font-medium mt-2 text-sm uppercase tracking-widest">Official JMC Portal</p>
+          <h2 className="text-3xl font-black tracking-tight">Authority Registration</h2>
+          <p className="text-slate-400 font-medium mt-2 text-sm uppercase tracking-widest">Official Civic Connect Portal</p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">
@@ -111,7 +111,7 @@ const AuthoritySignup = () => {
             <div className="relative">
               <BadgeCheck className="absolute left-4 top-4 text-slate-500 w-5 h-5" />
               <input 
-                name="idProofNumber" type="text" placeholder="Employee ID Number" required 
+                name="idProofNumber" type="text" placeholder=" UID Number" required 
                 className="w-full pl-12 pr-4 py-4 bg-slate-800 border border-slate-700 rounded-2xl outline-none focus:ring-2 focus:ring-amber-500 text-white transition placeholder:text-slate-600"
                 onChange={handleChange} 
                 disabled={loading}

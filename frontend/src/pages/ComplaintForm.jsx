@@ -169,7 +169,7 @@ const ComplaintForm = ({ user }) => {
               <option value="Pothole Repair">Pothole Repair</option>
               <option value="Streetlight Issue">Streetlight Issue</option>
               <option value="Water Leakage">Water Leakage</option>
-              <option value="Encroachment">Encroachment</option>
+              <option value="Encroachment">other</option>
             </select>
           </div>
 
