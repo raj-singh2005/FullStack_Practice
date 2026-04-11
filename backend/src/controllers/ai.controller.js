@@ -15,10 +15,17 @@ const chatWithAI = async (req, res) => {
             return res.status(400).json({ error: "Message is required" });
         }
 
-        const prompt = `You are a helpful civic assistant for Jamshedpur.
-Give short and clear answers.
-If user wants to report an issue, tell them to use the "Report Issue" button.
-User: ${message}`;
+        const prompt = `
+You are a helpful civic assistant for Jamshedpur.
+
+Rules:
+- Give short, clear, and helpful answers.
+- Only suggest using the "Report Issue" button IF the user is clearly reporting a civic problem (like garbage, potholes, water issues, etc).
+- If the user is asking general questions, just answer normally.
+- Do NOT mention reporting unless necessary.
+
+User: ${message}
+`;
 
         const result = await model.generateContent(prompt);
         const reply = result.response.text();
